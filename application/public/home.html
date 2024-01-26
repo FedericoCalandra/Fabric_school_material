@@ -11,15 +11,18 @@
 <body>
     <div class="container">
         <form action="" class="m-auto" style="max-width:600px">
-            <h3 class="my-4">Quotation App</h3>
+            <h3 class="my-4">Car Registration App</h3>
             <hr class="my-4" />
             <h5 class="my-4">Identity</h5>
 
             <div class="form-group mb-3 row"><label for="organization" class="col-md-5 col-form-label">User1 of
                     Organization</label>
                 <div class="col-md-7">
-                    <input type="text" class="form-control form-control-lg" id="organization"
-                        value="agency.quotation.com" required>
+                    <select class="form-select form-select-lg" id="organization">
+                        <option value="agency.quotation.com">Agency</option>
+                        <option value="suppliera.quotation.com">Mercedes</option>
+                        <option value="supplierb.quotation.com">Audi</option>
+                    </select>
                 </div>
             </div>
 
@@ -27,7 +30,10 @@
 
             <div class="form-group mb-3 row"><label for="channel" class="col-md-5 col-form-label">Channel</label>
                 <div class="col-md-7">
-                    <input type="text" class="form-control form-control-lg" id="channel" value="q1channel" required>
+                    <select class="form-select form-select-lg" id="channel">
+                        <option value="q1channel">1</option>
+                        <option value="q2channel">2</option>
+                    </select>
                 </div>
             </div>
 
@@ -35,7 +41,7 @@
             <div class="form-group mb-3 row">
                 <label for="identity" class="col-md-5 col-form-label">Chaincode</label>
                 <div class="col-md-7">
-                    <input type="text" class="form-control form-control-lg" id="chaincode" value="quotation" required>
+                    <input type="text" class="form-control form-control-lg" id="chaincode" value="carRegistration" required>
                 </div>
             </div>
 
@@ -46,16 +52,77 @@
             <div class="form-group mb-3 row">
                 <label for="txName" class="col-md-5 col-form-label">Transaction Name</label>
                 <div class="col-md-7">
-                    <input type="text" class="form-control form-control-lg" id="txName" value="requestQuotation"
-                        required>
+                    <!-- <input type="text" class="form-control form-control-lg" id="txName" value="getRegistration"
+                        required> -->
+
+                        <select class="form-select form-select-lg" id="txName">
+                            <option value="initLedger">initLedger</option>
+                            <option value="getRegistration">getRegistration</option>
+                            <option value="newCarRegistration">newCarRegistration</option>
+                            <option value="updateCar">updateCar</option>
+                            <option value="deleteCarRegistration">deleteCarRegistration</option>
+                            <option value="changeOwnership">changeOwnership</option>
+                            <option value="addService">addService</option>
+                        </select>
                 </div>
             </div>
-            <div class="form-group mb-3 row"><label for="txParams" class="col-md-5 col-form-label">Transaction
-                    Parameters</label>
+            <div class="form-group mb-3 row">
+                <label for="carID" class="col-md-5 col-form-label">CarID</label>
                 <div class="col-md-7">
-                    <input type="text" class="form-control form-control-lg" id="txParams" value="quotation1,laptop,500">
+                    <input type="text" class="form-control form-control-lg" id="carID">
                 </div>
             </div>
+            <div class="form-group mb-3 row">
+                <label for="manufacturer" class="col-md-5 col-form-label">Manufacturer</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control form-control-lg" id="manufacturer">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="model" class="col-md-5 col-form-label">Model</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control form-control-lg" id="model">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="vin" class="col-md-5 col-form-label">VIN</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control form-control-lg" id="vin">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="power" class="col-md-5 col-form-label">Power</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control form-control-lg" id="power">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="service" class="col-md-5 col-form-label">Service</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control form-control-lg" id="service">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="state" class="col-md-5 col-form-label">State</label>
+                <div class="col-md-7">
+                    <!-- <input type="text" class="form-control form-control-lg" id="state"> -->
+                    <select class="form-select form-select-lg" id="state">
+                        <option value=""></option>
+                        <option value="new">New</option>
+                        <option value="crashed">Crashed</option>
+                        <option value="used">Used</option>
+                        <option value="scrapped">Scrapped</option>
+                        <option value="delivering">Delivering</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="owner" class="col-md-5 col-form-label">Owner</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control form-control-lg" id="owner">
+                </div>
+            </div>
+            
             <hr class="my-4" />
             <div class="form-group mb-3 row"><label for="sendTxBtn" class="col-md-5 col-form-label"></label>
                 <div class="col-md-7"><button class="btn btn-primary btn-lg" id="sendTxBtn"
@@ -66,55 +133,44 @@
 
     <script>
         document.getElementById("sendTxBtn").addEventListener("click", (e) => {
-            var organization = document.getElementById("organization").value
-            if (!organization) {
-                alert("'Organization' field missing!")
-                return
-            }
-
-            var channel = document.getElementById("channel").value
-            if (!channel) {
-                alert("'Channel' field missing!")
-                return
-            }
-
-            var chaincode = document.getElementById("chaincode").value
-            if (!chaincode) {
-                alert("'chaincode' field missing!")
-                return
-            }
-
-            var txName = document.getElementById("txName").value
-            if (!txName) {
-                alert("'Transaction Name' field missing!")
-                return
-            }
-
-            var txParams = document.getElementById("txParams").value
-            if (!txParams && (txName != "initLedger" || txName != "GetAllAssets")) {
-                alert("'Transaction Params' field missing!")
-                return
-            }
-
-            var paramsArr = []
-            txParams = txParams.split(',')
-            txParams.forEach(p => {
-                paramsArr.push(p)
-            })
-
-            var xhr = new XMLHttpRequest()
-            // TODO change the url to your own domain
-            xhr.open("POST", "https://jubilant-space-happiness-rv5q5794v6wcxqp7-3000.app.github.dev/submitTX", true)
-
-            xhr.setRequestHeader('Content-Type', 'application/json')
-            xhr.send(JSON.stringify({
-                organization,
-                channel,
-                chaincode,
-                txName,
-                txParams: paramsArr
-            }))
-        })
+            // Retrieve values from individual inputs
+            var carID = document.getElementById("carID").value;
+            var manufacturer = document.getElementById("manufacturer").value;
+            var model = document.getElementById("model").value;
+            var vin = document.getElementById("vin").value;
+            var power = document.getElementById("power").value;
+            var service = document.getElementById("service").value;
+            var state = document.getElementById("state").value;
+            var owner = document.getElementById("owner").value;
+    
+            // Validate individual inputs
+            /*
+            if (!carID || !manufacturer || !model || !vin || !power || !service || !state || !owner) {
+                alert("Please fill in all required fields!");
+                return;
+            }*/
+    
+            var paramsArr = [carID, manufacturer, model, vin, power, service, state, owner];
+        
+            // Create a data object for the POST request
+            var postData = {
+                organization: document.getElementById("organization").value,
+                channel: document.getElementById("channel").value,
+                chaincode: document.getElementById("chaincode").value,
+                txName: document.getElementById("txName").value,
+                txParams: paramsArr.filter((o) => o) // Filter only non-null values
+            };
+    
+            // Create a new XMLHttpRequest
+            var xhr = new XMLHttpRequest();
+    
+            // Specify the request details
+            xhr.open("POST", "https://turbo-carnival-74gvpxq6j4g2rw9-3000.app.github.dev/submitTX", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+    
+            // Convert the data object to JSON and send the request
+            xhr.send(JSON.stringify(postData));
+            });
     </script>
 
 </body>
